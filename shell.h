@@ -49,9 +49,9 @@ extern char **environ;
  */
 typedef struct liststr
 {
-        int num;
-        char *str;
-        struct liststr *next;
+	int num;
+	char *str;
+	struct liststr *next;
 } list_t;
 
 /**
@@ -105,12 +105,13 @@ typedef struct passinfo
 	int cmd_buf_type; /*  this is for the commands -> (CMD_type ||, &&, ;)*/
 	int histcount;
 	int readfd;
-} info_t;
+}
+info_t;
 
 
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
-        0, 0, 0}
+0, 0, 0}
 
 /**
  *struct builtin - has a builtin strng as well as corresponding fxn
@@ -129,6 +130,10 @@ int interactive(info_t *);
 int is_delim(char, char *);
 int _isalpha(int);
 int _atoi(char *);
+
+/* protoptypes for the sourcecode tokenizer.c */
+char **strtow(char *, char *);
+char **strtow2(char *, char);
 
 /* protoptypes for the sourcecode shell_loop.c */
 int hsh(info_t *, char **);
@@ -150,7 +155,7 @@ int _eputchar(char);
 int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
-/* protoptypes for the sourcecode string.c */
+/* protoptypes for the sourcecode string0.c */
 int _strlen(char *);
 int _strcmp(char *, char *);
 char *starts_with(const char *, const char *);
@@ -182,10 +187,15 @@ int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 
-/* protoptypes for the sourcecode builtin.c */
+/* protoptypes for the sourcecode builtin0.c */
 int _myexit(info_t *);
 int _mycd(info_t *);
 int _myhelp(info_t *);
+
+
+/* protoptypes  for the sourcecode builtin1.c */
+int _myhistory(info_t *);
+int _myalias(info_t *);
 
 /* protoptypes for the sourcecode getline.c */
 ssize_t get_input(info_t *);
@@ -216,7 +226,7 @@ int read_history(info_t *info);
 int build_history_list(info_t *info, char *buf, int linecount);
 int renumber_history(info_t *info);
 
-/* protoptypes for the sourcecode lists.c */
+/* protoptypes for the sourcecode lists0.c */
 list_t *add_node(list_t **, const char *, int);
 list_t *add_node_end(list_t **, const char *, int);
 size_t print_list_str(const list_t *);
@@ -236,14 +246,6 @@ void check_chain(info_t *, char *, size_t *, size_t, size_t);
 int replace_alias(info_t *);
 int replace_vars(info_t *);
 int replace_string(char **, char *);
-
-/* protoptypes  for the sourcecode builtin1.c */
-int _myhistory(info_t *);
-int _myalias(info_t *);
-
-/* protoptypes for the sourcecode tokenizer.c */
-char **strtow(char *, char *);
-char **strtow2(char *, char);
 
 #endif
 
