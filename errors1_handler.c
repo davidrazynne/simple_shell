@@ -7,17 +7,17 @@
  */
 int _erratoi(char *s)
 {
-	int i = 0;
+	int a = 0;
 	unsigned long int result = 0;
 
 	if (*s == '+')
 		s++;
-	for (i = 0;  s[i] != '\0'; i++)
+	for (a = 0;  s[a] != '\0'; a++)
 	{
-		if (s[i] >= '0' && s[i] <= '9')
+		if (s[a] >= '0' && s[a] <= '9')
 		{
 			result *= 10;
-			result += (s[i] - '0');
+			result += (s[a] - '0');
 			if (result > INT_MAX)
 				return (-1);
 		}
@@ -124,12 +124,12 @@ char *convert_number(long int num, int base, int flags)
  */
 void remove_comments(char *buf)
 {
-	int i;
+	int a;
 
-	for (i = 0; buf[i] != '\0'; i++)
-		if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
+	for (a = 0; buf[a] != '\0'; a++)
+		if (buf[a] == '#' && (!a || buf[a - 1] == ' '))
 		{
-			buf[i] = '\0';
+			buf[a] = '\0';
 			break;
 		}
 }
